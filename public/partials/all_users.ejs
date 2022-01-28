@@ -1,0 +1,44 @@
+<div class="card">
+    <div class="card-header">
+      <h3 class="card-title">All diary users</h3>
+
+    </div>
+    <!-- /.card-header -->
+    
+    <div class="card-body table-responsive p-0">
+      <table class="table table-hover text-nowrap">
+        <thead>
+          <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">User</th>
+            <th class="text-center">Email</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Change Status</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% for (let i=0; i < users.length; i++) { %>
+                <% let user = users[i] %>
+                <% let fullName = user.FirstName + " " + user.LastName %>
+                <% let status = user.Status == '1'? "Active" : "Deactivated" %>
+                <% let color = user.Status == '1'? "danger" : "success" %>
+                <tr>
+                    <td class="text-center"><%= user.id %></td>
+                    <td class="text-center"><%= fullName %></td>
+                    <td class="text-center"><%= user.Email %></td>
+                    <td class="text-center"><%= status %></td>
+                    <td class="text-center">
+                        <form method="post" action="/change_user_status">
+                            <input type="hidden" name="userid" value="<%= user.id %>">
+                            <input type="hidden" name="curr_status" value="<%= user.Status %>">
+                            <button type="submit" class="btn btn-lg btn-<%= color %>"> </button> 
+                        </form>
+                    </td>
+                </tr>
+                <%}%>
+        </tbody>
+      </table>
+    </div>
+    <!-- /.card-body -->
+  
+  </div>

@@ -1,0 +1,76 @@
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="" class="brand-link">
+    <img
+      src="/dist/img/AdminLTELogo.png"
+      alt="AdminLTE Logo"
+      class="brand-image img-circle elevation-3"
+      style="opacity: 0.8"
+    />
+    <span class="brand-text font-weight-light"><%= session.fname %></span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user (optional) -->
+
+    <!-- SidebarSearch Form -->
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul
+        class="nav nav-pills nav-sidebar flex-column"
+        data-widget="treeview"
+        role="menu"
+        data-accordion="false"
+      >
+        <!-- Add icons to the links using the .nav-icon class
+         with font-awesome or any other icon font library -->
+        <% var act1=act2=act3="nav-link " %>
+            <% if(page == "dashpage") { %>
+              <% act1 = act1 + "active" %>
+              <% } else if(page == "userpage") { %>
+                <% act2 = act2 + "active" %>
+                <% } else { %>
+                  <% act3 = act3 + "active" %>
+                  <% } %>
+            <% var href = "/home_admin/" + session.uid + "?pageid=" %>
+            <% var hr1 = href+"1", hr2 = href+"2", hr3 = href+"3" %>
+        <li class="nav-item">
+          <a href="<%= hr1 %>" class="<%= act1 %>" >
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              Dashboard
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<%= hr2 %>" class="<%= act2 %>">
+            <p><span class="nav-icon"><img src="https://img.icons8.com/windows/32/ffffff/user-group-man-man--v1.png"/></span>Users</p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="<%= hr3 %>" class="<%= act3 %>" >
+            <p><span class="nav-icon"><img src="https://img.icons8.com/windows/32/ffffff/filled-message.png"/></span>Posts</p>
+          </a>
+        </li>
+        <!-- <li class="nav-item">
+          <a href="" class="nav-link" >
+            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+            <p><span class="nav-icon"><img src="https://img.icons8.com/metro/26/ffffff/transaction-list.png"/></span>Lists</p>
+          </a>
+          <ul class="nav nav-treeview" style="display: none">
+            
+          </ul>
+        </li> -->
+
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
+  

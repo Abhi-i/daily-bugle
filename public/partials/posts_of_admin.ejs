@@ -1,0 +1,81 @@
+<div class="row">
+  <% for(let i = 0; i < admin_posts.length; i++) { %>
+    <% let e = admin_posts[i]; %>
+    <% let overflow = e.content.length > 50? true: false; %>
+  <div class="col-lg-4 col-6">
+    <!-- small box -->
+    <% const opts = ["style={backgroundbg-info", "bg-success", "bg-warning", "bg-error", "bg-danger", "bg-primary", "bg-secondary", "bg-light","bg-dark","bg-white"] %>
+    <% let rand = Math.floor(Math.random() * 10); %>
+    <div class="small-box <%= opts[rand] %>">
+      <div class="inner">
+        <h3><%= e.title %></h3>
+        <% if(overflow) { %>
+        <p><%= e.content.substring(0, 49) %></p>
+        <% }else{ %>
+        <p><%= e.content %></p>
+        <% } %>
+      </div>
+      <div class="icon">
+        <i class="ion ion-bag"></i>
+      </div>
+      
+      <% if(overflow) { %>
+        <% let id = "#post" + i; %>
+      <div class="row text-center">
+        <div class="col-6">
+          <a
+        href=""
+        class="small-box-footer <%= opts[rand] %>"
+        data-toggle="modal"
+        data-target=<%=id%>
+        >Read More <i class="fas fa-arrow-circle-right"></i>
+      </a>
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        data-backdrop=true
+        role="dialog"
+        id="<%= id.substring(1) %>"
+      >
+        <div class="modal-dialog" role="document">
+          <!-- Modal content-->
+          <div class="modal-content bg-info">
+            <div class="modal-header">
+              <h5 class="modal-title"><%= e.title %> </h5>
+            </div>
+            <div class="modal-body">
+              <p><%= e.content %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- .post modal ends -->
+        </div>
+        <div class="col-6">
+          <!-- delete button here -->
+          <form
+          action="/delete/post/<%= e.post_id %>/<%= e.user_id %>"
+          method="post"
+        >
+          <button type="submit" class="btn btn-outline-danger btn-sm">
+            <span><img src="https://img.icons8.com/ios/20/000000/delete--v3.png"/></span>
+          </button>
+        </form>
+        </div>
+      </div>
+      
+      <% }else{ %>
+      <!-- delete button here -->
+      <form
+      action="/delete/post/<%= e.post_id %>/<%= e.user_id %>"
+      method="post"
+    >
+      <button type="submit" class="btn btn-outline-danger btn-sm">
+        <span><img src="https://img.icons8.com/ios/20/000000/delete--v3.png"/></span>
+      </button>
+    </form>
+      <% } %>
+    </div>
+  </div>
+  <% } %>
+</div>

@@ -1,0 +1,30 @@
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <% let pagename = page=="dashpage"? "Dashboard" : page=="userpage"? "All Users List" : "All Posts List" %>
+            <h1 class="m-0"><%=pagename%></h1>
+          </div>
+          
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+
+    <!-- Main content -->
+    <section class="content">
+      
+      <% if (page == "userpage") { %>
+        <div><%- include("all_users")  %></div>
+      <% } else if(page == "postpage") { %>
+        <div><%- include("all_posts")  %></div>
+      <% } else { %>
+        <div><%- include("card") %></div>
+      <% } %>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
